@@ -1,9 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react"; // useRef: útil para se referir a elementos DOM (qual elemtno da DOM focar e como encontrá-lo)
+
+function usePrevious(value) {
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+  }  
 
 export default function Todo(props) {
     // Estado para saber se o usuário está editando ou não. O padrão é isEditing=false
     const [isEditing, setEditing] = useState(false);
     const [newName, setNewName] = useState(''); // hook que guarda o novo nome da tarefa
+    
+    // Esses refs têm um valor padrão de null porque eles não terão valor até que os anexemos aos seus respectivos elementos 
+    const editFieldRef = useRef(null);
+    const editButtonRef = useRef(null);
+
 
     function handleChange(e) {
         setNewName(e.target.value);
@@ -30,6 +43,7 @@ export default function Todo(props) {
                     type="text"
                     value={newName}
                     onChange={handleChange}
+                    ref={editFieldRef}
                 />
             </div>
             <div className="btn-group">
@@ -38,6 +52,7 @@ export default function Todo(props) {
                     type="button"
                     className="btn todo-cancel"
                     onClick={() => setEditing(false)}
+                    ref={editButtonRef}
                 >
                     Cancel
                     <span className="visually-hidden">renaming {props.name}</span>
@@ -83,6 +98,13 @@ export default function Todo(props) {
             </div>
         </div>
     );
+
+    // useEffect() recebe uma função como argumento; esta função é executada após a renderização do componente
+    useEffect(() => {
+        if (isEditing) {
+          editFieldRef.current.focus();
+        }
+      }, [isEditing]);      
 
     // Componentes devem SEMPRE retornar algo
     return <li className="todo">{isEditing ? editingTemplate : viewTemplate}</li>; // Usando operador ternário para verificar se está no estado de edição ou somente visualização
