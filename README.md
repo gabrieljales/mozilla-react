@@ -1,6 +1,25 @@
+# MDN Tutorial - React TODO App
+
+This project was made following the React MDN tutorial, which you can find at this [link.](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_getting_started)
+
+## About the app
+
+It's a simple checklist application, that you can:
+- View all your tasks
+- Add tasks
+- Mark them as completed
+- Delete them
+- Filter by the types "All", "Actives" and "Completed"
+
+## Demo
+
+![](todo-app-demo.gif)
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+<details>
+    <summary>For details on how to run the project, click here!</summary>
 
 ## Available Scripts
 
@@ -68,3 +87,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+</details>
